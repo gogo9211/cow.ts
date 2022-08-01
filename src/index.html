@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cow Lang</title>
+    <link rel="stylesheet" href="./scss/styles.scss">
+    <script type='module' src="./index.ts"></script>
+  </head>
+  <body>
+    <div class="h-100 d-flex align-items-center justify-content-center">
+        <div class="text-center form-group">
+            <label for="code">Moo Code</label>
+            <textarea class="form-control" rows="8" id="code"></textarea>
+            <button class="btn btn-primary btn-xl mt-1" type="submit" onclick="runCowScript()">Run</button>
+        </div>
+    </div>
+    <script>
+        function runCowScript()
+        {
+            try
+            {
+                var code = document.getElementById("code");
+                var vm = new cowlang.vm(cowlang.compile(code.value));
+                var result = vm.execute();
+
+                alert("Result: " + result);
+            }
+            catch(err)
+            {
+                alert(err);
+            }
+        }
+    </script>
+  </body>
+</html>
